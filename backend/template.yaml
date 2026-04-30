@@ -136,6 +136,8 @@ Resources:
           - '*'
         AllowHeaders:
           - '*'
+        ExposeHeaders:
+          - '*'
 
   LambdaIntegration:
     Type: AWS::ApiGatewayV2::Integration

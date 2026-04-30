@@ -7,7 +7,6 @@ from decimal import Decimal
 import boto3
 from boto3.dynamodb.conditions import Attr
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from pydantic import BaseModel, EmailStr
 from typing import Any, Literal, Optional
@@ -72,14 +71,6 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(title="Dr. Paws Training API", lifespan=lifespan)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 # ── Pydantic models ────────────────────────────────────────────────────────────
