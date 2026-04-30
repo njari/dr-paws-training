@@ -133,11 +133,9 @@ Resources:
         AllowOrigins:
           - '*'
         AllowMethods:
-          - GET
-          - POST
-          - OPTIONS
+          - '*'
         AllowHeaders:
-          - Content-Type
+          - '*'
 
   LambdaIntegration:
     Type: AWS::ApiGatewayV2::Integration
