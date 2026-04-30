@@ -4,7 +4,11 @@ import type { Role } from '../types';
 import { ROLES } from '../data/roles';
 import { registerUser } from '../data/api';
 
-export default function RegistrationForm() {
+interface RegistrationFormProps {
+  onRegistered: (session: { email: string; role: Role; questionsDone: string[] }) => void;
+}
+
+export default function RegistrationForm({ onRegistered }: RegistrationFormProps) {
   const [email, setEmail] = useState('');
   const [petName, setPetName] = useState('');
   const [role, setRole] = useState<Role | ''>('');
@@ -19,11 +23,12 @@ export default function RegistrationForm() {
     setErrorMsg('');
 
     try {
-      await registerUser({ email, petName, role });
-      setStatus('success');
-      setEmail('');
-      setPetName('');
-      setRole('');
+      const result = await registerUser({ email, petName, role });
+      onRegistered({
+        email,
+        role,
+        questionsDone: result.data.questions_done,
+      });
     } catch (err) {
       setStatus('error');
       setErrorMsg(err instanceof Error ? err.message : 'Something went wrong');
