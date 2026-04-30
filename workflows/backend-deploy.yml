@@ -30,6 +30,6 @@ jobs:
         run: |
           aws cloudformation deploy \
             --template-file backend/template.yaml \
-            --stack-name knit-bingo-backend \
+            --stack-name drpawstraining \
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides LambdaCodeBucket=drpawstraining-artifacts LambdaCodeKey=backend/lambda.zip
